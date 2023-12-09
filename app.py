@@ -1,8 +1,7 @@
 import pickle
 import streamlit as st
 import pandas as pd
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import TfidfVectorizer
+
 
 
 # Load data
@@ -36,31 +35,6 @@ def recommend_by_genre_and_date(selected_movie, genre_filter, selected_years):
     else:
         return []
 
-
-
-# # Assuming 'important_features' is a textual column
-# tfidf_vectorizer = TfidfVectorizer(stop_words='english')
-# tfidf_matrix = tfidf_vectorizer.fit_transform(movies['important_features'])
-
-# # Compute cosine similarity
-# cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
-
-# # Compute cosine similarity matrix
-# cosine_sim = cosine_similarity(movies['important_features'])  
-
-# # Function to get recommendations by name
-# def recommend_by_name(selected_movie, movies_data, similarity_data=cosine_sim):
-#     index = movies_data[movies_data['name'] == selected_movie].index[0]
-#     sim_scores = list(enumerate(similarity_data[index]))
-#     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
-#     movie_indices = [i[0] for i in sim_scores[1:6]]
-
-#     recommended_movie_names = [
-#         f"{movies_data['name'].iloc[i]} ({movies_data['rounded_rating'].iloc[i]}, {movies_data['release_date'].iloc[i]})"
-#         for i in movie_indices
-#     ]
-
-#     return recommended_movie_names
 
 
 def recommend_by_name(selected_movie, movies_data, similarity_data=similarity):
